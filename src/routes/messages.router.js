@@ -1,12 +1,11 @@
 import { Router } from "express";
-import MessageManager from "../MessageManager.js";
+import MessageManager from "../dao/fileManagers/MessageManager.js";
 
 const router = Router();
 const messageManager = new MessageManager();
 
 router.get("/", async (req, res) => {
     const messages = await messageManager.getMessages();
-    console.log(messages);
     return res.send({ messages });
 });
 

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import ProductManager from "../ProductManager.js";
-import MessageManager from "../MessageManager.js";
+import ProductManager from "../dao/fileManagers/ProductManager.js";
+import MessageManager from "../dao/fileManagers/MessageManager.js";
 
 const router = Router();
 const productManager = new ProductManager();

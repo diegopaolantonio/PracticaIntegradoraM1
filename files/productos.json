@@ -1,22 +1,23 @@
 [
 	{
 		"status": true,
-		"title": "Diego",
-		"description": "Juan",
-		"price": 100,
-		"code": "Alberto",
-		"stock": 20,
-		"category": "Pedro",
-		"id": 1
+		"title": "M241",
+		"description": "PLC",
+		"price": "450",
+		"code": "SchneireM241",
+		"stock": "100",
+		"category": "aws",
+		"id": 2,
+		"thumbnail": "https://cdn.bpsolucioneselectricas.com.ar/uploads/1591999559_UEYxMzAyMjBfNDAwMHg0MDAwLnBuZw==.jpg"
 	},
 	{
-		"status": true,
-		"title": "asd",
-		"description": "sad",
-		"price": 123,
-		"code": "asd",
-		"stock": 123,
-		"category": "aws",
-		"id": 2
+		"title": "1100",
+		"description": "HMI",
+		"price": 1240,
+		"code": "Siemen8550",
+		"stock": 256,
+		"category": "entrar",
+		"status": false,
+		"id": 3
 	}
 ]

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import ProductManager from "../ProductManager.js";
+import ProductManager from "../dao/fileManagers/ProductManager.js";
 
 const router = Router();
 const productManager = new ProductManager();
@@ -8,7 +8,6 @@ const productManager = new ProductManager();
 router.get("/", async (req, res) => {
   const limit = req.query.limit;
   const products = await productManager.getProducts();
-  console.log(products);
 
   if (!limit) {
     res.send({ products });

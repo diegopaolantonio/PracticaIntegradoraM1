@@ -21,10 +21,9 @@ export default class MessageManager {
     let messages = await this.getMessages();
 
     if (messages.length === 0) {
-      messages.id = 1;
-      console.log(messages.id);
+      message.id = 1;
     } else {
-      messages.id = messages[messages.length - 1].id + 1;
+      message.id = messages[messages.length - 1].id + 1;
     }
 
     messages.push(message);

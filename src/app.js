@@ -5,8 +5,8 @@ import messagesRouter from "./routes/messages.router.js";
 import productsRouter from "./routes/products.router.js";
 import cartsRouter from "./routes/carts.router.js";
 import viewsRouter from "./routes/views.router.js";
-import ProductManager from "./ProductManager.js";
-import MessageManager from "./MessageManager.js";
+import ProductManager from "./dao/fileManagers/ProductManager.js";
+import MessageManager from "./dao/fileManagers/MessageManager.js";
 import __dirname from "./utils.js";
 
 const app = express();
@@ -35,8 +35,12 @@ const io = new Server(httpServer);
 //Conexion con el servidor
 io.on("connection", async (socket) => {
   console.log("Cliente conectado");
+
   let products = await productManager.getProducts();
   io.emit("getProduct", products);
+
+  let messages = await messageManager.getMessages();
+  io.emit("getMessages", messages);
 
   // Agregar producto
   socket.on("addProduct", async (product) => {

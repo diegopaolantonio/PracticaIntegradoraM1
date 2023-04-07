@@ -3,14 +3,11 @@ const socket = io();
 const messageBox = document.getElementById("messageBox");
 
 // Evento para agregar mensaje al pulsar el boton con los datos especificados en las casillas
-messageBox.addEventListener("Click", () => {
-  var addMessage = {
-    user: "",
-    message: "",
-  };
+messageBox.addEventListener("click", () => {
+  var addMessage = {};
 
-  let infoUser = document.querySelector("#user").value;
-  let infoMessage = document.querySelector("#message").value;
+  let infoUser = document.querySelector("#user").value,
+    infoMessage = document.querySelector("#message").value;
 
   addMessage.user = infoUser;
   addMessage.message = infoMessage;
