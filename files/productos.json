@@ -1,0 +1,22 @@
+[
+	{
+		"status": true,
+		"title": "Diego",
+		"description": "Juan",
+		"price": 100,
+		"code": "Alberto",
+		"stock": 20,
+		"category": "Pedro",
+		"id": 1
+	},
+	{
+		"status": true,
+		"title": "asd",
+		"description": "sad",
+		"price": 123,
+		"code": "asd",
+		"stock": 123,
+		"category": "aws",
+		"id": 2
+	}
+]
