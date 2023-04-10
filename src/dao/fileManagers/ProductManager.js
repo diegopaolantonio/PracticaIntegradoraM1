@@ -18,11 +18,12 @@ export default class ProductManager {
 
   // Funcion para obtener un product especifico por el id
   getProductById = async (productId) => {
+    const productIdInt = parseInt(productId);
     const products = await this.getProducts();
     let productIndex = -1;
 
     products.forEach((element, index) => {
-      if (element.id === productId) {
+      if (element.id === productIdInt) {
         productIndex = index;
       }
     });
@@ -76,10 +77,11 @@ export default class ProductManager {
 
   // Funcion para actualizar un product por el id en el archivo
   updateProduct = async (productId, product) => {
+    const productIdInt = parseInt(productId);
     const products = await this.getProducts();
 
     const productIndex = products.findIndex(
-      (productToUpdate) => productToUpdate.id === productId
+      (productToUpdate) => productToUpdate.id === productIdInt
     );
 
     if (productIndex === -1) {
@@ -96,16 +98,17 @@ export default class ProductManager {
 
   // Funcion para eliminar un product por el id en el archivo
   deleteProduct = async (productId) => {
+    const productIdInt = parseInt(productId);
     const products = await this.getProducts();
 
     const productIndex = products.findIndex(
-      (product) => product.id === productId
+      (product) => product.id === productIdInt
     );
 
     if (productIndex === -1) {
       return "Not found to delete";
     } else {
-      const eliminado = products.filter((product) => product.id != productId);
+      const eliminado = products.filter((product) => product.id != productIdInt);
 
       const string = JSON.stringify(eliminado, null, "\t");
       await fs.promises.writeFile(this.path, string);

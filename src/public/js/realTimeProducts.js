@@ -6,7 +6,6 @@ const addBox = document.getElementById("addBox");
 // Evento para eliminar producto al pulsar el boton con el id especificado en la casilla
 deleteBox.addEventListener("click", () => {
   let deleteId = parseInt(document.querySelector("#pid").value);
-
   socket.emit("deleteProduct", deleteId);
   document.querySelector("#pid").value = "";
 });
@@ -46,7 +45,7 @@ socket.on("getProduct", (data) => {
   realTime.innerHTML = "";
   data.forEach((element) => {
     realTime.innerHTML += `<tr>
-             <p>Id: ${element.id}</p>
+             <p>Id: ${element._id}</p>
              <p>Title: ${element.title}</p>
              <p>Description: ${element.description}</p>
              <p>Price: ${element.price}</p>

@@ -19,5 +19,25 @@
 		"category": "entrar",
 		"status": false,
 		"id": 3
+	},
+	{
+		"status": true,
+		"title": "fgsffds",
+		"description": "sdfsASFD",
+		"price": 12321,
+		"code": "QWEDSA",
+		"stock": 123,
+		"category": "asdasas",
+		"id": 4
+	},
+	{
+		"status": true,
+		"title": "sdfsaf",
+		"description": "dafsa",
+		"price": 2132,
+		"code": "asasd",
+		"stock": 12321,
+		"category": "fcas<dc",
+		"id": 5
 	}
 ]

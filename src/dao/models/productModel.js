@@ -2,12 +2,7 @@ import mongoose from "mongoose";
 
 const productCollection = "Products";
 
-const productSchema = new mongoose.schema ({
-    // id: {
-    //     type: String,
-    //     required: true,
-    //     unique: true
-    // },
+const productSchema = new mongoose.Schema ({
     title: {
         type: String,
         required: true

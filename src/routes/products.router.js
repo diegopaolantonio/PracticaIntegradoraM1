@@ -1,5 +1,5 @@
 import { Router } from "express";
-import ProductManager from "../dao/fileManagers/ProductManager.js";
+import ProductManager from "../dao/dbManagers/ProductManager.js";
 
 const router = Router();
 const productManager = new ProductManager();
@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
 
 // Pedido de un product especifico por el pid (product id)
 router.get("/:pid", async (req, res) => {
-  const pid = parseInt(req.params.pid);
+  const pid = req.params.pid;
   const product = await productManager.getProductById(pid);
   res.send(product);
 });
@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
 
 // Actualizar los datos de un product epecifico por el pid (product id)
 router.put("/:pid", async (req, res) => {
-  const pid = parseInt(req.params.pid);
+  const pid = req.params.pid;
   const updateProduct = req.body;
   const products = await productManager.updateProduct(pid, updateProduct);
   return res.send({ products });
@@ -44,7 +44,7 @@ router.put("/:pid", async (req, res) => {
 
 // Eliminar un product especifico por el pid (product id)
 router.delete("/:pid", async (req, res) => {
-  const pid = parseInt(req.params.pid);
+  const pid = req.params.pid;
   const products = await productManager.deleteProduct(pid);
   return res.send({ products });
 });
