@@ -17,7 +17,7 @@ messageBox.addEventListener("click", () => {
 });
 
 // Funcion para imprimir en pantalla los datos del array con los mensajes
-socket.on("getMessages", (data) => {
+socket.on("printMessages", (data) => {
   realTimeChat.innerHTML = "";
   data.forEach((element) => {
     realTimeChat.innerHTML += `<tr>

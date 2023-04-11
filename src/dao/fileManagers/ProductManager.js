@@ -23,7 +23,7 @@ export default class ProductManager {
     let productIndex = -1;
 
     products.forEach((element, index) => {
-      if (element.id === productIdInt) {
+      if (element._id === productIdInt) {
         productIndex = index;
       }
     });
@@ -40,12 +40,12 @@ export default class ProductManager {
 
     if (products.length === 0) {
       this.productToAdd = false;
-      product.id = 1;
+      product._id = 1;
     } else {
       this.productToAdd = products.find(
         (productAdd) => productAdd.code === product.code
       );
-      product.id = products[products.length - 1].id + 1;
+      product._id = products[products.length - 1]._id + 1;
     }
 
     if (product.status != false) {
@@ -81,7 +81,7 @@ export default class ProductManager {
     const products = await this.getProducts();
 
     const productIndex = products.findIndex(
-      (productToUpdate) => productToUpdate.id === productIdInt
+      (productToUpdate) => productToUpdate._id === productIdInt
     );
 
     if (productIndex === -1) {
@@ -102,13 +102,15 @@ export default class ProductManager {
     const products = await this.getProducts();
 
     const productIndex = products.findIndex(
-      (product) => product.id === productIdInt
+      (product) => product._id === productIdInt
     );
 
     if (productIndex === -1) {
       return "Not found to delete";
     } else {
-      const eliminado = products.filter((product) => product.id != productIdInt);
+      const eliminado = products.filter(
+        (product) => product._id != productIdInt
+      );
 
       const string = JSON.stringify(eliminado, null, "\t");
       await fs.promises.writeFile(this.path, string);

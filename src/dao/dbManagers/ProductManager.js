@@ -7,7 +7,13 @@ export default class ProductManager {
   getProducts = async () => {
     try {
       const products = await productModel.find();
-      return products;
+      if (!products) {
+        return res
+          .status(400)
+          .send({ status: "error", error: "Get products error" });
+      } else {
+        return products;
+      }
     } catch (error) {
       console.log(error);
     }
@@ -16,10 +22,13 @@ export default class ProductManager {
   // Funcion para obtener un product especifico por el id
   getProductById = async (productId) => {
     try {
-      const products = await productModel.find({ "_id": productId });
-      if (products.length === 0) {
-        return "Id not found";
+      const products = await productModel.find({ _id: productId });
+      if (!products) {
+        return res.status(400).send({ status: "error", error: "Id not found" });
       } else {
+        // if (products.length === 0) {
+        //   return "Id not found";
+        // } else {
         return products;
       }
     } catch (error) {
@@ -34,7 +43,13 @@ export default class ProductManager {
     }
     try {
       const createdProduct = await productModel.create(product);
-      return createdProduct;
+      if (!createdProduct) {
+        return res
+          .status(400)
+          .send({ status: "error", error: "Add product error" });
+      } else {
+        return createdProduct;
+      }
     } catch (error) {
       console.log(error);
     }
@@ -43,10 +58,15 @@ export default class ProductManager {
   // Funcion para actualizar un product por el id en el archivo
   updateProduct = async (productId, product) => {
     try {
-      const updated = await productModel.updateOne({ "_id": productId }, product);
-      if (updated.length === 0) {
-        return "Id not found";
+      const updated = await productModel.updateOne({ _id: productId }, product);
+      if (!updated) {
+        return res
+          .status(400)
+          .send({ status: "error", error: "Update product error" });
       } else {
+        // if (updated.length === 0) {
+        //   return "Id not found";
+        // } else {
         return updated;
       }
     } catch (error) {
@@ -57,10 +77,15 @@ export default class ProductManager {
   // Funcion para eliminar un product por el id en el archivo
   deleteProduct = async (productId) => {
     try {
-      const eliminado = await productModel.deleteOne({ "_id": productId });
-      if (eliminado.length === 0) {
-        return "Id not found";
+      const eliminado = await productModel.deleteOne({ _id: productId });
+      if (!eliminado) {
+        return res
+          .status(400)
+          .send({ status: "error", error: "Delete product error" });
       } else {
+        // if (eliminado.length === 0) {
+        //   return "Id not found";
+        // } else {
         return eliminado;
       }
     } catch (error) {

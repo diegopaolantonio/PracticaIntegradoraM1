@@ -5,6 +5,8 @@ import MessageManager from "./dao/dbManagers/MessageManager.js";
 const socket = {};
 const productManager = new ProductManager();
 const messageManager = new MessageManager();
+let products;
+let messages;
 
 socket.connect = function (httpServer) {
   socket.io = new Server(httpServer);
@@ -15,40 +17,40 @@ socket.connect = function (httpServer) {
   io.on("connection", async (socket) => {
     console.log("Cliente conectado");
 
-    let products = await productManager.getProducts();
-    io.emit("getProduct", products);
+    products = await productManager.getProducts();
+    io.emit("printProducts", products);
 
-    let messages = await messageManager.getMessages();
-    io.emit("getMessages", messages);
+    messages = await messageManager.getMessages();
+    io.emit("printMessages", messages);
 
     // Agregar producto
     socket.on("addProduct", async (product) => {
-      products = await productManager.addProduct(product);
-      io.emit("addProduct", products);
+      await productManager.addProduct(product);
+      io.emit("getProduct");
     });
 
     // Eliminar producto
     socket.on("deleteProduct", async (pid) => {
-      products = await productManager.deleteProduct(parseInt(pid));
-      io.emit("deleteProduct", products);
+      await productManager.deleteProduct(pid);
+      io.emit("getProduct");
     });
 
-    // Actualizar vista en tiempo real
+    // Actualizar vista products
     socket.on("getProduct", async () => {
       products = await productManager.getProducts();
-      io.emit("getProduct", products);
+      io.emit("printProducts", products);
     });
 
     // Agregar mensaje
     socket.on("addMessage", async (message) => {
-      const messages = await messageManager.addMessage(message);
-      io.emit("addMessage", messages);
+      await messageManager.addMessage(message);
+      io.emit("getMessages");
     });
 
-    // Actualizar vista en tiempo real
+    // Actualizar vista messages
     socket.on("getMessages", async () => {
       messages = await messageManager.getMessages();
-      io.emit("getMessages", messages);
+      io.emit("printMessages", messages);
     });
   });
 };

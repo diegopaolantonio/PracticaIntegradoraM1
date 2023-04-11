@@ -1,6 +1,6 @@
 import express from "express";
 import handlebars from "express-handlebars";
-import { socket } from "./socket.js"
+import { socket } from "./socket.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import messagesRouter from "./routes/messages.router.js";
@@ -30,7 +30,9 @@ const httpServer = app.listen(port, () => {
   console.log(`Server on port ${port}`);
 });
 
-mongoose.connect(`mongodb+srv://${dbUser}:${dbPassword}@ecommerce.o3a2yau.mongodb.net/${dbName}?retryWrites=true&w=majority`);
+mongoose.connect(
+  `mongodb+srv://${dbUser}:${dbPassword}@ecommerce.o3a2yau.mongodb.net/${dbName}?retryWrites=true&w=majority`
+);
 
 app.use("/api/messages", messagesRouter);
 app.use("/api/products", productsRouter);
@@ -38,5 +40,3 @@ app.use("/api/carts", cartsRouter);
 app.use("/", viewsRouter);
 
 socket.connect(httpServer);
-
-

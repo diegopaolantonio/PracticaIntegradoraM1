@@ -7,7 +7,13 @@ export default class MessageManager {
   getMessages = async () => {
     try {
       const messages = await messageModel.find();
-      return messages;
+      if (!messages) {
+        return res
+          .status(400)
+          .send({ status: "error", error: "Get messages error" });
+      } else {
+        return messages;
+      }
     } catch (error) {
       console.log(error);
     }
@@ -17,8 +23,13 @@ export default class MessageManager {
   addMessage = async (message) => {
     try {
       const createdMessage = await messageModel.create(message);
-      console.log(createdMessage);
-      return createdMessage;
+      if (!createdMessage) {
+        return res
+          .status(400)
+          .send({ status: "error", error: "Add messages error" });
+      } else {
+        return createdMessage;
+      }
     } catch (error) {
       console.log(error);
     }
